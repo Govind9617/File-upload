@@ -24,6 +24,7 @@ public class AttachmentController {
     @PostMapping("/upload")
     public ResponseData uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
         String s=null;
+        String s2=null;
         Attachment attachment = null;
         String downloadURl = "";
         attachment = attachmentService.saveAttachment(file);
