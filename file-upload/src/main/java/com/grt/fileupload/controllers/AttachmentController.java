@@ -24,6 +24,11 @@ public class AttachmentController {
     @PostMapping("/upload")
     public ResponseData uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
         String s=null;
+<<<<<<< Updated upstream
+=======
+        String s2=null;
+        String s3=null;
+>>>>>>> Stashed changes
         Attachment attachment = null;
         String downloadURl = "";
         attachment = attachmentService.saveAttachment(file);
