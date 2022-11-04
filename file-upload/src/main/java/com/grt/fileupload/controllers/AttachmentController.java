@@ -22,40 +22,29 @@ public class AttachmentController {
     }
 
     @PostMapping("/upload")
-    public ResponseData uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
-        String s=null;
-<<<<<<< Updated upstream
-=======
-        String s2=null;
-        String s3=null;
->>>>>>> Stashed changes
+    public ResponseData uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
+        String s = null;
+
+
+        String s2 = null;
+        String s3 = null;
+
+
         Attachment attachment = null;
         String downloadURl = "";
         attachment = attachmentService.saveAttachment(file);
-        downloadURl = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/")
-                .path(attachment.getId())
-                .toUriString();
+        downloadURl = ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path(attachment.getId()).toUriString();
 
-        return new ResponseData(attachment.getFilename(),
-                downloadURl,
-                file.getContentType(),
-                file.getSize());
+        return new ResponseData(attachment.getFilename(), downloadURl, file.getContentType(), file.getSize());
 
     }
 
 
     @GetMapping("/download/{fileId}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fieldId) throws Exception {
-        Attachment attachment
-                =null;
-        attachment=attachmentService.getAttachment(fieldId);
+        Attachment attachment = null;
+        attachment = attachmentService.getAttachment(fieldId);
 
-        return  ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(attachment.getFileType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"" + attachment.getFilename()
-                                + "\"")
-                .body(new ByteArrayResource(attachment.getData()));
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(attachment.getFileType())).header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + attachment.getFilename() + "\"").body(new ByteArrayResource(attachment.getData()));
     }
 }
