@@ -1,4 +1,4 @@
-package com.grt.fileupload.controller;
+package com.grt.fileupload.controllers;
 
 import com.grt.fileupload.entity.Attachment;
 import com.grt.fileupload.model.ResponseData;
